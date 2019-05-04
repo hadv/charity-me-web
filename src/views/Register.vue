@@ -104,7 +104,6 @@
 <script>
 import { mapActions } from 'vuex'
 import { modal, validation } from '@/mixins'
-import { error } from 'util';
 
 export default {
   metaInfo: {

@@ -18,7 +18,6 @@
 
 <script>
 import { mapActions } from 'vuex'
-import { error } from 'util';
 
 export default {
   metaInfo: {
