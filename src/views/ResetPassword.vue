@@ -65,6 +65,7 @@
 <script>
 import { mapActions } from 'vuex'
 import { modal, validation } from '@/mixins'
+import { error } from 'util';
 
 export default {
   metaInfo: {
@@ -98,12 +99,13 @@ export default {
   methods: {
     ...mapActions('account', ['verifyToken', 'resetPassword']),
     reset() {
-      this.$validator.validate().then(async valid => {
+      this.$validator.validate().then(valid => {
         if (valid) {
           const {token, password} = this
           this.resetPassword({token, password}).then(() => {
             this.$router.push({name: "SignIn"})
-          }).catch(() => {
+          }).catch(error => {
+            this.$log.debug(error)
             this.showModal()
           })
         }

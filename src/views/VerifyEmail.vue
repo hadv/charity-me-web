@@ -18,6 +18,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { error } from 'util';
 
 export default {
   metaInfo: {
@@ -39,7 +40,8 @@ export default {
     let token = urlParams.get('token')
     this.verifyEmail({token}).then(() => {
       this.showAlert()
-    }).catch(() => {
+    }).catch(error => {
+      this.$log.debug(error)
       this.$router.push({name: "VerifyEmailExpired"})
     })
   },
